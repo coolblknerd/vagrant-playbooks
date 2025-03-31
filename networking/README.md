@@ -13,9 +13,6 @@
 ```bash
 # Check the IP address of the host
 ip addr show
-
-# Check the IP address of the container
-hostnamctl
 ```
 
 ## Hostnames and DNS Resolution
