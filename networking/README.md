@@ -46,6 +46,37 @@ ss -lt
 resolvectl
 ```
 
+## NTP Client and Time Synchronization
+
+- By default, Ubuntu makes use of the NTP client-only systemd-timesyncd. This gives systems a smaller footprint and improved security.
+- The NTP client is managed with `timedatectl` and is enabled by default.
+- NTP (Network Time Protocol) is a protocol used to synchronize the clocks of systems
+- NTP clients are used to synchronize the time of a host with an NTP server.
+- NTP servers are responsible for providing accurate time to NTP clients.
+- The `/etc/systemd/timesyncd.conf` file is used to configure the systemd-timesyncd service, which provides network time synchronization to local applications.
+
+### Commands to check NTP configuration
+
+```bash
+# Check the NTP configuration
+timedatectl
+
+# Set the timezone
+timedatectl set-timezone <timezone>
+
+# Set the NTP synchronization
+timedatectl set-ntp true
+
+# Check the NTP service
+systemctl status systemd-timesyncd.service
+
+# Check the Timesync status
+timedatectl timesync-status
+
+# Show the Timesync details
+timedatectl show-timesync
+```
+
 ## Resources
 
 - [LLMNR Poisoning](https://tcm-sec.com/llmnr-poisoning-and-how-to-prevent-it/)
