@@ -12,7 +12,7 @@
 
 ```bash
 # Check the IP address of the host
-ip addr show
+$ ip addr show
 ```
 
 ## Hostnames and DNS Resolution
@@ -31,19 +31,19 @@ ip addr show
 
 ```bash
 # Check the hostname of the host
-hostname
+$ hostname
 
 # Manage hostnames
-hostnamectl
+$ hostnamectl
 
 # Check the local DNS resolution
-cat /etc/resolv.conf
+$ cat /etc/resolv.conf
 
 # Check the sockets on the host
-ss -lt
+$ ss -lt
 
 # How to resolve IPv4 and IPv6 addresses
-resolvectl
+$ resolvectl
 ```
 
 ## NTP Client and Time Synchronization
@@ -59,23 +59,60 @@ resolvectl
 
 ```bash
 # Check the NTP configuration
-timedatectl
+$ timedatectl
 
 # Set the timezone
-timedatectl set-timezone <timezone>
+$ timedatectl set-timezone <timezone>
 
 # Set the NTP synchronization
-timedatectl set-ntp true
+$ timedatectl set-ntp true
 
 # Check the NTP service
-systemctl status systemd-timesyncd.service
+$ systemctl status systemd-timesyncd.service
 
 # Check the Timesync status
-timedatectl timesync-status
+$ timedatectl timesync-status
 
 # Show the Timesync details
-timedatectl show-timesync
+$ timedatectl show-timesync
 ```
+
+## Routing
+
+- Routing is the process of forwarding packets from one network to another.
+- Routers are devices that forward packets between networks.
+- The routing table is a data structure that contains information about the routes to different networks.
+- The routing table is used by the kernel to determine the best route for a packet.
+- If you want to change a hosts to a router, you need to enable IP forwarding.
+  - The `/etc/sysctl.conf` file is used to configure kernel parameters at runtime.
+  - Updating `net.ipv4.ip_forward` to `1` will enable IP forwarding.
+  - Updating `net.ipv6.conf.all.forwarding` to `1` will enable IPv6 forwarding.
+  - The changes can be applied immediately using `sysctl -p`.
+
+### Commands to check routing
+
+```bash
+# Check the routing table
+$ ip route show
+
+# Check the system routing
+$ sysctl -ar ip_forward
+```
+
+## Firewalls
+
+- Firewalls are used to control the flow of traffic between networks.
+- Firewalls can be implemented in hardware or software.
+- Firewalls can be used to block or allow traffic based on rules.
+- Understanding ports and protocols is important for configuring firewalls since ports are like doors to a building, and protocols are the rules that govern how data is transmitted over those doors.
+- In order to connect to a service across a network, the client must know the IP address of the server and the port number on which the service is listening.
+  - The service has to be started and listening on the port.
+  - Ports can be managed with either the TCP or UDP protocols.
+  - It's always good to audit a system by checking the ports that are open and listening for connections.
+  - `nmap` is a powerful tool for network exploration and security auditing.
+
+### Commands to check firewalls
+
 
 ## Resources
 
